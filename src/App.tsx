@@ -1,26 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './Home';
+import Dashboard from './Dashboard';
 import './App.css';
 
 function App() {
+  //TODO implement proper data fetching, uses dummy data for now
+  const data = ["Company1", "Company2", "Company3"]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+   </BrowserRouter>
   );
 }
+
 
 export default App;
