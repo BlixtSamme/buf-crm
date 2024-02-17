@@ -1,18 +1,12 @@
 const auradb = require('./auradb');
 const prompt = require('prompts');
 const express  = require('express');
-
 const PORT = process.env.PORT || 3001;
 
-
-//TODO remove this
-const NEO4J_URI="neo4j+s://777ef14a.databases.neo4j.io"
-const NEO4J_USERNAME="neo4j"
-const NEO4J_PASSWORD="fb8nO8YQkykxF_ArGxkvD5lH7P2KH3DygLeA99swNj0"
-
-// const uri = prompt("Enter your URI:");
-// const user = prompt("Enter your username:");
-// const password = prompt("Enter your password:");
+//Right now env does not load properly, run with node --env-file=.env index.js
+const NEO4J_URI=process.env.NEO4J_URI
+const NEO4J_USERNAME=process.env.NEO4J_USERNAME
+const NEO4J_PASSWORD=process.env.NEO4J_PASSWORD
 
 const driver = auradb.authenticate(NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD);
 driver.then((result) => {
@@ -29,6 +23,6 @@ app.listen(PORT, () => {
 });
 
 
-// app.get("/api", (req, res) => {
-//   res.send(data);
-// }); 
+app.get("/api", (req, res) => {
+  res.send(data);
+}); 
