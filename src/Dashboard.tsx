@@ -1,21 +1,15 @@
-import SummaryList from "./components/SummaryList";
+import { useAsyncValue } from "react-router-dom";
 
 
 function Dashboard () {
-  //TODO implement proper data fetching, uses dummy data for now
-  const data = ["Company1", "Company2", "Company3"];
-
   return (
-    <div data-theme="nord" className="Dashboard">
-      <div className="navbar bg-accent">
-        <div className="navbar-start">
-          <h1 className="justify-self-center">Dashboard</h1>
-        </div>
+    <div data-theme="nord" className="App">
+      <div className="hero min-h-screen bg-primary">
+      <div className="hero-content flex-col rounded-xl bg-accent shadow-md">
+          <h1 className="text-5xl bold">
+            Welcome to the Dashboard
+          </h1>
       </div>
-      <div className="hero min-h-screen bg-primary grid-col-3">
-        <div className="hero-content">
-          <SummaryList data={data} />
-        </div>
       </div>
     </div>
   )

@@ -7,8 +7,6 @@ import Dashboard from './Dashboard';
 import './App.css';
 
 function App() {
-  //TODO implement proper data fetching, uses dummy data for now
-  const data = ["Company1", "Company2", "Company3"]
 
   return (
    <BrowserRouter>
