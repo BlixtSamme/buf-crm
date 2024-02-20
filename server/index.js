@@ -9,20 +9,38 @@ const NEO4J_USERNAME=process.env.NEO4J_USERNAME
 const NEO4J_PASSWORD=process.env.NEO4J_PASSWORD
 
 const driver = auradb.authenticate(NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD);
-driver.then((result) => {
-  auradb.getData(result)
+driver.then((driver) => {
+
+  app = express();
+  
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  
+  });
+
+  app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
+  });
+
+
+  app.get("/api", (req, res) => {
+    auradb.getCompanies(driver).then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+    });
+  });
+  
+  app.get("/api/:name", (req, res) => {
+    console.log(req.params.name);
+    auradb.getCompanyByName(driver, req.params.name).then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+    });
+});
 }).catch((error) => {
   console.log(error);
   console.log("Error getting info");
 });
-
-app = express();
-
-app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
-});
-
-
-app.get("/api", (req, res) => {
-  res.send(data);
-}); 
